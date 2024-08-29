@@ -20,6 +20,19 @@ def File_Encryption(name):
      myencrypted.write(encrypted_file) # save the encrypted file
 
 
+def Input_Encryption(input):
+   key = Fernet.generate_key()
+   with open(f"keys/encrypted_{input}.key","wb") as file_key:
+        file_key.write(key)
+    
+   original_file = input.encode() 
+   fern = Fernet(key)
+
+   encrypted_file = fern.encrypt(original_file)
+
+   with open(f"encrypted_{input}.txt","wb") as Encrypted_file:
+       Encrypted_file.write(encrypted_file)
+
 #===============================================
 # 1- Generate Key 
 # 2- Store Key 

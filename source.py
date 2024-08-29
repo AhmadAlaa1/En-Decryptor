@@ -1,5 +1,5 @@
-import Encryption
-import Decryption
+from Encryption import *
+from Decryption import *
 import os
 
 choice =""
@@ -12,23 +12,32 @@ while(choice != "3"):
     match choice:
 
         case "1":
+            choice_2 = input("[1] Encrypt File \t [2] Encrypt Text Input \n\n ==>")
 
-            File_name = input("Enter The Full File Name (e.g:test.txt): ")
-            if os.path.exists(File_name):
-                Encryption.File_Encryption(File_name)
-                print("\nFile Has Been Encrypted")
+            match choice_2:
+                case "1":
+                    File_name = input("Enter The Full File Name (e.g:test.txt): ")
+                    if os.path.exists(File_name):
+                        File_Encryption(File_name)
+                        print("\nFile Has Been Encrypted")
 
-                with open(f"keys/encrypted_{File_name}.key","r") as key:
-                    print("The File Key is : ",key.read())
-            else:
-                print("The File Not Exist")
+                        with open(f"keys/encrypted_{File_name}.key","r") as key:
+                            print("The File Key is : ",key.read())
+                    else:
+                        print("The File Not Exist")
+                case "2":
+                    text_input = input("Enter Something to Encrypt: ")
+                    Input_Encryption(text_input)
+                    print("\nText Has Been Encrypted")
+
+                    with open(f"keys/encrypted_{text_input}.key","r") as key:
+                            print("The File Key is : ",key.read())
 
         case "2":
-
             File_name = input("Enter The Full File Name (e.g:test.txt): ")
             if os.path.exists(File_name):
                 Key = input("Enter The Key : ")
-                Decryption.File_Decryption(File_name,Key)
+                File_Decryption(File_name,Key)
 
                 print("File Has Been Decrypted")
 

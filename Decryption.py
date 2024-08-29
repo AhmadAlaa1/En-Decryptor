@@ -13,6 +13,15 @@ def File_Decryption(name,key):
     with open(f"decrypted_{name}","wb") as decrypted_file:
         decrypted_file.write(Decrypted_File) # save the decrypted file
 
+def Input_Decryption(input,key):
+
+    fern = Fernet(key)
+    original_file = input.encode()
+    decryption_file = fern.decrypt(original_file)
+
+    with open(f"decrypted_{input}","wb") as decrypted_File:
+        decrypted_File.write(decryption_file)
+        
 #===============================================
 # 1- Read The File Key 
 # 2- Store Key 
